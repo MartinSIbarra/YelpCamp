@@ -20,6 +20,10 @@ router.post("/", isLoggedIn, function(req, res){
   var newCampground = {
     name: req.body.name,
     image: req.body.image,
+    author: {
+      id: req.user._id,
+      username: req.user.username
+    },
     description: req.body.description,
   }
 
