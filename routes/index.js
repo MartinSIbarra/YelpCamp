@@ -45,6 +45,11 @@ router.get("/logout", function(req, res) {
   res.redirect("/campgrounds")
 })
 
+//unknown routes
+router.get("*", function(req, res) {
+  res.redirect("/")
+})
+
 // login validation
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
