@@ -7,7 +7,7 @@ var express = require("express")
   , User = require("./models/user")
   // , Campground = require("./models/campground")
   // , Comment = require("./models/comment")
-  // , seedDB = require("./seeds")
+  , seedDB = require("./seeds")
 
 var campgroundRoutes = require("./routes/campgrounds")
   , commentRoutes = require("./routes/comments")
@@ -33,6 +33,7 @@ passport.use(new localStrategy(User.authenticate()))
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
 
+// setting user to current user
 app.use(function(req, res, next){
   res.locals.currentUser = req.user
   next()
@@ -49,6 +50,8 @@ app.use(indexRoutes)
 //==========================================================================
 // SERVER
 //==========================================================================
+
+seedDB()
 
 app.listen(3000, function(){
   console.log("Server listening on port 3000");

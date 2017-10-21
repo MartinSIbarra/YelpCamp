@@ -36,36 +36,36 @@ function seedDB(){
     if (err) {
       console.log(err)
     } else {
-      console.log("All campgrounds removed!")
-      Comment.remove({}, function(err) {
-        if (err) {
-          console.log(err)
-        } else {
-          console.log("All comments removed!");
-          campgroundsSeeds.forEach(function(campgroundSeed){
-            Campground.create(campgroundSeed, function(err, campground){
-              if (err) {
-                console.log(err)
-              } else {
-                console.log("Campground created:")
-                console.log(campground)
-                commentsSeeds.forEach(function(commentSeed) {
-                  Comment.create(commentSeed, function(err, comment) {
-                    if (err) {
-                      console.log(err)
-                    } else {
-                      console.log("Comment created:")
-                      console.log(comment)
-                      campground.comments.push(comment)
-                      campground.save()
-                    }
-                  })
-                })
-              }
-            })
-          })
-        }
-      })
+      // console.log("All campgrounds removed!")
+      // Comment.remove({}, function(err) {
+      //   if (err) {
+      //     console.log(err)
+      //   } else {
+      //     console.log("All comments removed!");
+      //     campgroundsSeeds.forEach(function(campgroundSeed){
+      //       Campground.create(campgroundSeed, function(err, campground){
+      //         if (err) {
+      //           console.log(err)
+      //         } else {
+      //           console.log("Campground created:")
+      //           console.log(campground)
+      //           commentsSeeds.forEach(function(commentSeed) {
+      //             Comment.create(commentSeed, function(err, comment) {
+      //               if (err) {
+      //                 console.log(err)
+      //               } else {
+      //                 console.log("Comment created:")
+      //                 console.log(comment)
+      //                 campground.comments.push(comment)
+      //                 campground.save()
+      //               }
+      //             })
+      //           })
+      //         }
+      //       })
+      //     })
+      //   }
+      // })
     }
   })
 }
