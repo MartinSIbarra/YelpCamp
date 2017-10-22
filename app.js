@@ -27,7 +27,8 @@ var campgroundRoutes = require("./routes/campgrounds")
 var app = express()
 
 // mongo db settings =====================================================
-mongoose.connect("mongodb://localhost/yelp_camp")
+// mongoose.connect("mongodb://localhost/yelp_camp")
+mongoose.connect(process.env.NODEMONGODB)
 // body parser settings
 app.use(bodyParser.urlencoded({extended: true}))
 // view templates settings --> setting out view templates to ejs extension
@@ -59,7 +60,7 @@ app.use(function(req, res, next){
 })
 
 //==========================================================================
-// SERVER SETTINGS
+// ROUTES SETTINGS
 //==========================================================================
 // setting routes to use in the app
 app.use(methodOverride("_method"))
@@ -67,10 +68,21 @@ app.use(campgroundRoutes)
 app.use("/campgrounds/:id", commentRoutes)
 app.use(indexRoutes)
 
-// seed function
+
+//==========================================================================
+// SEEDS SETTINGS
+//==========================================================================
+// seed function, view more in /seeds.js
 // seedDB()
 
+//==========================================================================
+// SERVER SETTINGS
+//==========================================================================
+var port = process.env.NODEPORT
+  , hostname = process.env.NODEHOST
+  , backlog = 511
+
 // starts server listen
-app.listen(3000, function(){
+app.listen(port, hostname, backlog, function(){
   console.log("Server listening on port 3000");
 });
