@@ -8,6 +8,7 @@ var express = require("express") // express framework
   , passport = require("passport") // authentication
   , localStrategy = require("passport-local") // authentication
   , methodOverride = require("method-override") // helper to use extra methods
+  , flash = require("connect-flash") // for showing flash messages
 
 // adding models files
 var User = require("./models/user")
@@ -34,6 +35,9 @@ app.set("view engine", "ejs")
 // setting public to access from html views
 app.use(express.static(__dirname + "/public"))
 
+// connect-flash settings ================================================
+app.use(flash())
+
 // passport settings =====================================================
 app.use(require("express-session")({
   secret: "Once again Rusty wins cutest dog!", // setting pepper
@@ -49,6 +53,8 @@ passport.deserializeUser(User.deserializeUser())
 // setting current user to all view templates
 app.use(function(req, res, next){
   res.locals.currentUser = req.user
+  res.locals.error = req.flash("error")
+  res.locals.success = req.flash("success")
   next()
 })
 
