@@ -23,7 +23,7 @@
 
           <% if (currentUser && campground.author.id.equals(currentUser._id)) { %>
             <!-- edit button -->
-            <a href="/campgrounds/<%= campground._id %>/edit" class="btn btn-warning">Edit</a>
+            <a class="btn btn-warning" href="/campgrounds/<%= campground._id %>/edit">Edit</a>
             <!-- delete button -->
             <form class="inline-form" action="/campgrounds/<%= campground._id %>?_method=delete" method="post">
               <button class="btn btn-danger">Delete</button>
@@ -38,9 +38,9 @@
         <div class="text-right">
           <a class="btn btn-success" href="/campgrounds/<%= campground._id %>/comments/new"> Add new comment</a>
         </div>
-        <hr>
 
         <% campground.comments.forEach(function(comment) {%>
+          <hr>
           <div class="row">
             <div class="col-md-12">
               <strong><%= comment.author.username %></strong>
@@ -48,6 +48,14 @@
               <p>
                 <%= comment.text %>
               </p>
+              <% if (currentUser && comment.author.id.equals(currentUser._id)) { %>
+                <!-- edit button -->
+                <a class="btn btn-xs btn-warning" href="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>/edit">Edit</a>
+                <!-- delete button -->
+                <form class="inline-form" action="/campgrounds/<%= campground._id %>/comments/<%= comment._id %>?_method=delete" method="post">
+                  <button class="btn btn-xs btn-danger">Delete</button>
+                </form>
+              <% } %>
             </div>
           </div>
         <% }) %>

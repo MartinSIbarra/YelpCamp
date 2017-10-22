@@ -46,9 +46,9 @@ router.get("/logout", function(req, res) {
 })
 
 //unknown routes
-router.get("*", function(req, res) {
-  res.redirect("/")
-})
+// router.get("*", function(req, res) {
+//   res.redirect("/")
+// })
 
 // login validation
 function isLoggedIn(req, res, next) {

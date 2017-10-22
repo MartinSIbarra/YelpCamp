@@ -57,8 +57,8 @@ app.use(function(req, res, next){
 //==========================================================================
 // setting routes to use in the app
 app.use(methodOverride("_method"))
-app.use("/campgrounds", campgroundRoutes)
-app.use("/campgrounds/:id/comments", commentRoutes)
+app.use(campgroundRoutes)
+app.use("/campgrounds/:id", commentRoutes)
 app.use(indexRoutes)
 
 // seed function
