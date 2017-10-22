@@ -78,11 +78,11 @@ app.use(indexRoutes)
 //==========================================================================
 // SERVER SETTINGS
 //==========================================================================
-var port = process.env.NODEPORT
-  , hostname = process.env.NODEHOST
-  , backlog = 511
+// var port = process.env.NODEPORT
+  // , hostname = process.env.NODEHOST
+  // , backlog = 511
 
 // starts server listen
-app.listen(port, hostname, backlog, function(){
-  console.log("Server listening on port 3000");
+app.listen(process.env.PORT, process.env.IP, function(){
+  console.log("Server listening at: " + process.env.IP + ":" + process.env.PORT);
 });
