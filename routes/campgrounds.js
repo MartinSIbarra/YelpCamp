@@ -28,6 +28,7 @@ router.get("/campgrounds/new", middleware.isLoggedIn, function(req, res){
 router.post("/campgrounds", middleware.isLoggedIn, function(req, res){
   var newCampground = {
     name: req.body.campground.name,
+    price: req.body.campground.price,
     image: req.body.campground.image,
     description: req.body.campground.description,
     author: {
